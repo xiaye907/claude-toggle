@@ -5,8 +5,9 @@
 ClaudeToggle.app/
 .claude-toggle/build/
 
-# User-specific config (keep example)
+# User-specific content
 .claude-toggle/config.json
+.claude-toggle/parts/
 
 # Unrelated projects
 thailand_gov_recon/

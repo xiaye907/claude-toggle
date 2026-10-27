@@ -37,10 +37,17 @@ open ClaudeToggle.app
 
 ## Setup
 
-1. Edit templates in `.claude-toggle/parts/` to match your CLAUDE.md sections
-2. Double-click `ClaudeToggle.app` — a shield icon appears in the menubar
-3. Click the icon to toggle skill packs on/off
-4. Add to Login Items for auto-start:
+1. Place `ClaudeToggle.app` in your Claude Code project root (where CLAUDE.md lives)
+2. Split your CLAUDE.md into template parts under `.claude-toggle/parts/`:
+   - `base.md` — core config (always included when enabled)
+   - `skill-row-*.md` — skill pack table rows
+   - `reverse.md` — reverse engineering routing section
+   - `pentest.md` — pentest routing section
+   - `priority.md` — routing priority (only when both packs enabled)
+   - `footer.md` — tool paths and services
+3. Double-click `ClaudeToggle.app` — a shield icon appears in the menubar
+4. Click the icon to toggle skill packs on/off
+5. Add to Login Items for auto-start:
    - System Settings → General → Login Items → add `ClaudeToggle.app`
 
 ## Project Structure
@@ -49,13 +56,7 @@ open ClaudeToggle.app
 .claude-toggle/
 ├── build.sh              # Build script (compile + icon generation + .app packaging)
 ├── config.json           # Toggle state (auto-generated, git-ignored)
-├── parts/                # CLAUDE.md template fragments
-│   ├── base.md           # Core config (always included when enabled)
-│   ├── skill-row-*.md    # Skill pack table rows
-│   ├── reverse.md        # Reverse engineering routing section
-│   ├── pentest.md        # Pentest routing section
-│   ├── priority.md       # Routing priority (only when both packs enabled)
-│   └── footer.md         # Tool paths + MCP services
+├── parts/                # Your CLAUDE.md template fragments (git-ignored, user-specific)
 └── src/
     ├── ClaudeToggle.swift # Menubar app source
     ├── GenerateIcon.swift # App icon generator (Core Graphics)
@@ -74,7 +75,7 @@ New Claude Code sessions pick up the change automatically.
 
 ## Customization
 
-Edit template files in `.claude-toggle/parts/` to change what goes into your CLAUDE.md. The app assembles them based on which toggles are active.
+Edit template files in `.claude-toggle/parts/` to change what goes into your CLAUDE.md. The app assembles them based on which toggles are active. Template content is git-ignored — only the app source code is tracked.
 
 ## Requirements
 
