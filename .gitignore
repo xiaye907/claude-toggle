@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Build artifacts
+ClaudeToggle.app/
+.claude-toggle/build/
+
+# User-specific config (keep example)
+.claude-toggle/config.json
+
+# Unrelated projects
+thailand_gov_recon/
+fragment-web/
+fragment-worker/
+fragment-api.md
+
+# Claude session data
+.claude/
