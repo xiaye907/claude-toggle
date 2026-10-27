@@ -17,10 +17,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var configPath = ""
     var claudeMdPath = ""
 
+    var activityToken: NSObjectProtocol?
+
     // MARK: - Lifecycle
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
+
+        // Prevent macOS from killing this background app
+        ProcessInfo.processInfo.disableAutomaticTermination("menubar app")
+        ProcessInfo.processInfo.disableSuddenTermination()
+        activityToken = ProcessInfo.processInfo.beginActivity(
+            options: .userInitiatedAllowingIdleSystemSleep,
+            reason: "ClaudeToggle menubar app"
+        )
 
         let bundlePath = Bundle.main.bundlePath
         projectDir = (bundlePath as NSString).deletingLastPathComponent
