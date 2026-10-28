@@ -250,7 +250,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func generateClaudeMd() {
         guard config.claudeMdEnabled else {
-            try? FileManager.default.removeItem(atPath: claudeMdPath)
+            // Keep the file present (don't delete it) so Claude Code's session
+            // init doesn't flag it as a missing/removed instruction file.
+            let placeholder = "# (CLAUDE.md disabled via ClaudeToggle)\n"
+            try? placeholder.write(toFile: claudeMdPath, atomically: true, encoding: .utf8)
             return
         }
 
